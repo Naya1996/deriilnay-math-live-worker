@@ -3,5 +3,11 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "deriilnay-math-live-worker",
   "main": "src/index.js",
-  "compatibility_date": "2026-11-24"
+  "compatibility_date": "2026-11-24",
+  "kv_namespaces": [
+    {
+      "binding": "MATH_DATA",
+      "id": "c707ad55d686404f9f32c2e341bb0a7c"
+    }
+  ]
 }
