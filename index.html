@@ -275,7 +275,13 @@ body.live-mode .control {
 <button id="fullscreenBtn" onclick="toggleFullscreen()">
   ⛶ FULLSCREEN
 </button>
+<div style="text-align:center; padding:15px;">
+  <button onclick="testServerConnection()">
+    TEST KONEKSI SERVER
+  </button>
 
+  <p id="serverResult">Server belum diuji</p>
+</div>
 <script>
 
 const questions = {
