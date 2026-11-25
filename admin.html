@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DERiiLNAY MATH LIVE - ADMIN</title>
+<style>
+body{font-family:Arial;background:#101827;color:white;padding:20px}
+.container{max-width:500px;margin:auto}
+input,textarea,button{width:100%;padding:13px;margin:8px 0;box-sizing:border-box;border-radius:8px}
+button{background:#16a34a;color:white;border:0;font-weight:bold}
+h2{color:#38bdf8}
+</style>
+</head>
+<body>
+<div class="container">
+<h2>DERiiLNAY MATH LIVE</h2>
+<h3>ADMIN PANEL</h3>
+
+<input id="token" type="password" placeholder="ADMIN TOKEN">
+<input id="question" placeholder="Masukkan pertanyaan">
+<input id="answer" placeholder="Masukkan kunci jawaban">
+
+<button onclick="sendQuestion()">AKTIFKAN SOAL</button>
+<p id="status"></p>
+</div>
+
+<script>
+async function sendQuestion(){
+ const token=document.getElementById("token").value.trim();
+ const question=document.getElementById("question").value.trim();
+ const answer=document.getElementById("answer").value.trim();
+ const status=document.getElementById("status");
+
+ if(!token||!question||!answer){
+  status.textContent="Lengkapi semua kolom!";
+  return;
+ }
+
+ status.textContent="Mengirim soal...";
+
+ try{
+  const response=await fetch(
+   "https://deriilnay-math-live-worker.nurulinayah-teknik.workers.dev/api/admin/question",
+   {
+    method:"POST",
+    headers:{
+     "Content-Type":"application/json",
+     "Authorization":"Bearer "+token
+    },
+    body:JSON.stringify({
+     question:question,
+     answer:answer
+    })
+   }
+  );
+
+  const data=await response.json();
+  status.textContent=data.message||JSON.stringify(data);
+ }catch(error){
+  status.textContent="Gagal terhubung ke server.";
+ }
+}
+</script>
+</body>
+</html>
