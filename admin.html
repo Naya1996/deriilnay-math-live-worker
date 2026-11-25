@@ -48,10 +48,11 @@ async function sendQuestion(){
      "Content-Type":"application/json",
      "Authorization":"Bearer "+token
     },
-  body:JSON.stringify({
-  question:question,
-  correct_answer:answer
-})  
+ body:JSON.stringify({
+  question: question,
+  answer: answer,
+  correct_answer: answer
+}) 
    }
   );
 
